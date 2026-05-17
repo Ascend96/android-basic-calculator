@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.example.basic_calculator.ui.CalculatorScreen
@@ -20,14 +22,17 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             BasiccalculatorTheme {
-                // collect stateflow from viewmodel
+
                 val state by viewModel.uiState.collectAsState()
 
-                // Show ui
-                CalculatorScreen(
-                    state = state,
-                    onButtonClick = viewModel::onAction
-                )
+                Surface(
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    CalculatorScreen(
+                        state = state,
+                        onButtonClick = viewModel::onAction
+                    )
+                }
             }
         }
     }
